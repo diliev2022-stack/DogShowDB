@@ -2,7 +2,26 @@
     ViewData["Title"] = "Начало";
 }
 
+<style>
+    .carousel-item {
+        height: 400px;
+    }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+    .carousel {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+</style>
+
 <div class="container mt-5">
+
     <div class="text-center">
 
         <h1 class="display-4 fw-bold text-primary">
@@ -10,15 +29,74 @@
         </h1>
 
         <div class="my-4">
-            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=800"
-                 class="img-fluid rounded shadow"
-                 alt="Куче"
-                 style="width: 300px; height: 220px; object-fit: cover;"
+
+            <div id="carouselExample" class="carousel slide"
+                 data-bs-ride="carousel" data-bs-interval="4000">
+
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExample"
+                            data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Снимка 1"></button>
+
+                    <button type="button" data-bs-target="#carouselExample"
+                            data-bs-slide-to="1"
+                            aria-label="Снимка 2"></button>
+
+                    <button type="button" data-bs-target="#carouselExample"
+                            data-bs-slide-to="2"
+                            aria-label="Снимка 3"></button>
+                </div>
+
+                <div class="carousel-inner rounded shadow">
+
+                    <div class="carousel-item active">
+                        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=1200"
+                             class="d-block w-100"
+                             alt="Златен ретривър">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=1200"
+                             class="d-block w-100"
+                             alt="Куче">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=1200"
+                             class="d-block w-100"
+                             alt="Домашно куче">
+                    </div>
+
+                </div>
+
+                <button class="carousel-control-prev" type="button"
+                        data-bs-target="#carouselExample"
+                        data-bs-slide="prev">
+
+                    <span class="carousel-control-prev-icon"
+                          aria-hidden="true"></span>
+
+                    <span class="visually-hidden">Предишна</span>
+                </button>
+
+                <button class="carousel-control-next" type="button"
+                        data-bs-target="#carouselExample"
+                        data-bs-slide="next">
+
+                    <span class="carousel-control-next-icon"
+                          aria-hidden="true"></span>
+
+                    <span class="visually-hidden">Следваща</span>
+                </button>
+
+            </div>
+
         </div>
 
     </div>
 
     <div class="row justify-content-center mt-5">
+
         <div class="col-md-8 text-center">
 
             <h2 class="mb-4">Какво ви очаква на събитието?</h2>
@@ -35,5 +113,7 @@
             </p>
 
         </div>
+
     </div>
+
 </div>
