@@ -36,6 +36,7 @@ public class Program
         builder.Services.AddControllersWithViews();
 
         builder.Services.AddTransient<IBreedService, BreedService>();
+        builder.Services.AddTransient<IDogService, DogService>();
 
         var app = builder.Build();
 

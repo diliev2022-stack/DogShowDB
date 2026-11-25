@@ -1,0 +1,41 @@
+﻿@model List<WebDogApp.Models.Dog.IndexVM>
+
+@{
+    ViewData["Title"] = "Dogs";
+}
+
+<h1>Dogs</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Dog</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Dog Name</th>
+            <th>Age</th>
+            <th>Breed</th>
+            <th>Dog Picture</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dog in Model)
+        {
+            <tr>
+                <td>@dog.Name</td>
+                <td>@dog.Age</td>
+                <td>@dog.BreedName</td>
+                <td>
+                    <img src="@dog.Picture" width="100" />
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@dog.Id">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@dog.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@dog.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

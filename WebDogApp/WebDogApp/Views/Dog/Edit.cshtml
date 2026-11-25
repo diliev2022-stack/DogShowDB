@@ -1,0 +1,44 @@
+﻿@model WebDogApp.Models.Dog.EditVM
+
+@{
+    ViewData["Title"] = "Edit Dog";
+}
+
+<h1>Edit Dog</h1>
+
+<form asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Age" class="form-label"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="BreedId" class="form-label"></label>
+        <select asp-for="BreedId" class="form-select">
+            @foreach (var breed in Model.Breeds)
+            {
+                <option value="@breed.Id">@breed.Name</option>
+            }
+        </select>
+        <span asp-validation-for="BreedId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Picture" class="form-label"></label>
+        <input asp-for="Picture" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+
+</form>
