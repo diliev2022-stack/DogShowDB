@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 using WebDogApp.Infrastructure.Data;
+using WebDogApp.Infrastructure.Data.Infrastructure;
+using WebDogApp.Core.Contracts;
+using WebDogApp.Core.Services;
 
 public class Program
 {
@@ -14,7 +17,8 @@ public class Program
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(connectionString));
+            options.UseLazyLoadingProxies()
+                   .UseSqlServer(connectionString));
 
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -31,7 +35,11 @@ public class Program
 
         builder.Services.AddControllersWithViews();
 
+        builder.Services.AddTransient<IBreedService, BreedService>();
+
         var app = builder.Build();
+
+        app.PrepareDatabase();
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
