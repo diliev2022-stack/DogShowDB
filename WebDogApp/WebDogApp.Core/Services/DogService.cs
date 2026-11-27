@@ -42,21 +42,23 @@ namespace WebDogApp.Core.Services
             return dogs;
         }
 
-        public List<Dog> GetDogs(string searchStringBreed, string searchStringName)
+        public List<Dog> GetDogs(string searchStringBreed, string searchStringName, string searchStringAge)
         {
             List<Dog> dogs = _context.Dogs.ToList();
 
-            if (!string.IsNullOrEmpty(searchStringBreed) && !string.IsNullOrEmpty(searchStringName))
-            {
-                dogs = dogs.Where(d => d.Breed.Name.Contains(searchStringBreed) && d.Name.Contains(searchStringName)).ToList();
-            }
-            else if (!string.IsNullOrEmpty(searchStringBreed))
+            if (!string.IsNullOrEmpty(searchStringBreed))
             {
                 dogs = dogs.Where(d => d.Breed.Name.Contains(searchStringBreed)).ToList();
             }
-            else if (!string.IsNullOrEmpty(searchStringName))
+
+            if (!string.IsNullOrEmpty(searchStringName))
             {
                 dogs = dogs.Where(d => d.Name.Contains(searchStringName)).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(searchStringAge) && int.TryParse(searchStringAge, out int age))
+            {
+                dogs = dogs.Where(d => d.Age >= age).ToList();
             }
 
             return dogs;
